@@ -1,0 +1,11 @@
+[package]
+name = "algolab"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+modpow = "1.0.1"
+num = {version = "0.4.3", features = ["rand"]}
+num-bigint = "0.4.6"
+num-traits = "0.2.19"
+rand = "0.8.5"
