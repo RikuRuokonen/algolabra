@@ -1,4 +1,4 @@
-## Weekly raport 1
+## Weekly report 1
 
 First week consisted of following:
 - Creating a base for the project
