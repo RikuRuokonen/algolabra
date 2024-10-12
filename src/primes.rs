@@ -1,4 +1,4 @@
-use num::{bigint::{ToBigInt, RandBigInt}, BigInt, BigUint};
+use num::{bigint::{RandBigInt, ToBigInt}, BigInt, BigUint, Zero};
 
 
 //Handy macro to capsulate BigInt unwrapping
@@ -42,6 +42,19 @@ pub fn is_prime(num: &BigInt) -> bool {
         return false
     }
 
+    //Check if inspected number is divisible by some of the first 500 primes --> is not prime
+    let first_500_primes = get_500_first_primes();
+    for prime in first_500_primes {
+        let bprime = Bint!(prime);
+        if num == &bprime {
+            return true
+        }
+        if num % bprime == BigInt::zero() {
+            return false;
+        }
+    }
+
+    //Finally give number to Miller-Rabin
     return is_rb_prime(&num);
 }
 
@@ -117,3 +130,28 @@ fn get_random_bigint() -> BigInt {
     return Bint!(rand_num);
 }
 
+//Use sieve 
+fn get_500_first_primes() -> Vec<i32> {
+    const MAX: usize = 500; 
+    let mut cands: [bool; MAX] = [true; MAX]; 
+
+    for p in 2..MAX {
+        let p_multiple = p * p;
+        if p_multiple >= MAX {
+            break;
+        }
+        if cands[p] == true {
+            for i in (p_multiple..MAX).step_by(p) {
+                cands[i] = false;
+            }
+        }
+    }
+
+    let mut primes = Vec::with_capacity(500);
+    for c in 2..MAX {
+        if cands[c] {
+            primes.push(c as i32); 
+        }
+    }
+    return primes
+}
