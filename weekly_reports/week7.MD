@@ -1,9 +1,11 @@
-## Weekly report 6
+## Weekly report 7
 
-This week's time planning did not go well -> resulted in rush on Saturday. Managed to get Sieve implemented, which is good increment to the program.
-Aim is to work on Sunday more with the application logic and making RSA-saving standardized, instead of tuple-juggling(in files).
-Week was not optimal, but got important thing done so I'll take it.
+This week I only had time to implement some peer-review feedback. Added more clarity to readme and most importantly error-handling for too long encryption content. Additionally, extended tests to cover that.
+Performed also some cleanup-duties.
 
-Did not implement any tests for Sieve, as it is already tested through prime-generation tests. I am generally happy with my tests --> they test the flow quite well as in vertical slices.
+I think the product is quite ready for now. Naturally, these things can be developed quite much so there is many things to improve in the future:
+- Better format for saving keys.
+- Better CLI.
+- Padding Scheme.
 
-Aim for next week is to enhance all parts of application, as now the core logic is solid and sound. Aiming to implement feedbacks based on peer-reviews.
+However, I am quite happy about the end-result.
