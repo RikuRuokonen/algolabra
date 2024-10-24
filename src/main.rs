@@ -142,6 +142,17 @@ fn load_private_key_from_file(filename: &str) -> (BigInt, BigInt) {
 }
 
 pub fn encrypt(message: &str, public_key: (BigInt, BigInt)) -> String {
+
+    let max_size = 255;
+    let content_bytes = message.as_bytes();
+
+    // Check if the message size exceeds the limit
+    if content_bytes.len() > max_size {
+        panic!(
+            "Message size exceeds the RSA encryption limit! Maximum allowed is {} bytes, but got {} bytes.",
+            max_size, content_bytes.len()
+        );
+    }
     //TODO: Consider using BigUint across application.
     let encoded = BigInt::from_bytes_be(Sign::Plus, message.as_bytes());
     //Encrypt via modpow by using public key parts as exponent and modulus
@@ -197,5 +208,22 @@ mod tests {
         let encrypted_message = encrypt(original_message, public_key);
         let decrypted_message = decrypt(&encrypted_message, private_key);
         assert_eq!(original_message, decrypted_message, "The decrypted message does not match the original one.");
+    }
+    
+    #[test]
+    fn test_encryption_size_limit() {
+        let (public_key, private_key) = generate_key_pair();
+        //Init content just under 2048 bits (256 bytes)
+        let message_within_limit = "X".repeat(255); 
+        let encrypted_message_within = encrypt(&message_within_limit, public_key.clone());
+        let decrypted_message_within = decrypt(&encrypted_message_within, private_key.clone());
+        assert_eq!(message_within_limit, decrypted_message_within, "Decryption failed for message within limit.");
+         //Init 257 bytes string -> just over the limit
+        let message_over_limit = "X".repeat(257); 
+    
+        // Expect this to panic 
+        let result = std::panic::catch_unwind(|| encrypt(&message_over_limit, public_key.clone()));
+        // Check if encryption fails(as expected)
+        assert!(result.is_err(), "Encryption should fail for message over the limit.");
     }
 }

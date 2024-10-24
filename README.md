@@ -10,6 +10,8 @@
 
 All files are expected to be located in application root.
 
+Tests are run with ```cargo test```.
+
 #### Example
 You have file called test.txt in application root folder, that contains plaintext.
 
@@ -17,6 +19,6 @@ You run  ```cargo run -- --generate-keys```. Now you have key-pair created to ap
 
 Next you run  ```cargo run -- --file-name test.txt --output encrypted.txt``` --> test.txt content is encrypted and placed into new file encrypted.txt
 
-Finally, you run ```cargo run -- --encrypted-file encrypted.txt --decrypted_output decrypted_message.txt``` --> you have decrypted plaintext file which should match original test.txt
+Finally, you run ```cargo run -- --encrypted-file encrypted.txt --decrypted-output decrypted_message.txt``` --> you have decrypted plaintext file which should match original test.txt
 
 CLI is still in works, so some bugs are expected.

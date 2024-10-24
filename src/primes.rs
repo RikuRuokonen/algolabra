@@ -19,10 +19,8 @@ pub fn get_primes() -> (BigInt, BigInt) {
 
     for _ in 0..max_tries {
         let b1 = get_random_bigint();
-        println!("iteration wit prime {b1}");
         let b1_is_prime = is_prime(&b1);
         if b1_is_prime {
-            println!("is val: {b1} a prime? Answer: {b1_is_prime}");
             primes.push(b1);
 
             if primes.len() == 2 {
@@ -126,7 +124,7 @@ fn is_composite(mut a: BigInt, n: &BigInt) -> bool {
 
 fn get_random_bigint() -> BigInt {
     let mut rng = rand::thread_rng();
-    let rand_num: BigUint = rng.gen_biguint(256);
+    let rand_num: BigUint = rng.gen_biguint(1024);
     return Bint!(rand_num);
 }
 
