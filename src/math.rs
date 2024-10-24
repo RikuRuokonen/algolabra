@@ -1,4 +1,4 @@
-use num::{one, BigInt, One, Zero};
+use num::{BigInt, One, Zero};
 
 pub fn euler_totient(q: BigInt, p: BigInt) -> BigInt {
     let result: BigInt = (q-1) * (p-1);
