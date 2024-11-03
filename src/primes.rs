@@ -32,7 +32,6 @@ pub fn get_primes() -> (BigInt, BigInt) {
 }
 
 
-//rabin-miller v1
 pub fn is_prime(num: &BigInt) -> bool {
     
     //Some base-checks but in our case we do not really need these
@@ -56,7 +55,7 @@ pub fn is_prime(num: &BigInt) -> bool {
     return is_rb_prime(&num);
 }
 
-fn is_rb_prime(n: &BigInt) -> bool {
+pub fn is_rb_prime(n: &BigInt) -> bool {
     let iterations: u16 = 600;
     let mut rng = rand::thread_rng();
 
