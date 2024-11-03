@@ -12,6 +12,15 @@ All files are expected to be located in application root.
 
 Tests are run with ```cargo test```.
 
+Current tests include:
+
+- Unit testing prime generation
+- Unit testing Miller-Rabin with large, representative numbers that all come outside of the application -> verified from two source.
+- Integration tests for encryption and decryption, covers the whole flow.
+- Integration test for encryption size-limit checking.
+
+All tests reside in main.rs file.
+
 #### Example
 You have file called test.txt in application root folder, that contains plaintext.
 
