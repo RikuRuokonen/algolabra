@@ -5,6 +5,7 @@ edition = "2021"
 
 [dependencies]
 base64 = "0.22.1"
+cargo-llvm-cov = "0.6.14"
 clap = { version = "4.5.19", features = ["derive"] }
 mod_exp = "1.0.1"
 modpow = "1.0.1"
